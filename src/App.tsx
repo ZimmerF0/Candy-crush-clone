@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { updateBoard } from "./store";
+import { moveBelow, updateBoard } from "./store";
 import { createBoard } from "./utils/createBoard";
 import Board from "./components/Board";
 import {
@@ -39,6 +39,7 @@ function App() {
       isColumnOfThree(newBoard, boardSize, formulaForColumnOfThree(boardSize));
       checkForRowOfThree(newBoard, boardSize, generateInvalidMovies(boardSize));
       dispatch(updateBoard(newBoard));
+      dispatch(moveBelow());
     }, 150);
     return () => clearInterval(timeout);
   }, [board, boardSize, dispatch]);
